@@ -11,3 +11,4 @@
 
 import './blocks/test/test.js';
 import './blocks/test2/test2.js';
+import './blocks/recipe/recipe.js';

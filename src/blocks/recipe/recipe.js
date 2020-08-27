@@ -9,8 +9,13 @@
 import './editor.scss';
 import './style.scss';
 
+// Import Icons
+import recipeIcons from './recipeIcons';
+
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { RichText, InnerBlocks } = wp.editor;
+// console.log(wp.editor);
 
 /**
  * Register: aa Gutenberg Block.
@@ -25,15 +30,16 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'sapphire-blocks/test-block2', {
+registerBlockType( 'sapphire-blocks/recipe', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Sapphire Test2' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	title: __( 'Sapphire Recipe' ), // Block title.
+	icon: recipeIcons.soupSpoon, // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'sapphire-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
-		__( 'sapphire-blocks — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Sapphire Blocks' ),
+		__( 'Recipe' ),
+		__( 'Cooking' ),
+		__( 'Food' ),
 	],
 
 	/**
@@ -48,21 +54,35 @@ registerBlockType( 'sapphire-blocks/test-block2', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		// Creates a <p class='wp-block-cgb-block-sapphire-blocks'></p>.
 		return (
 			<div className={ props.className }>
-				<p>— Hello from the backend!</p>
-				<p>
-					CGB BLOCK: <code>sapphire-blocks</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				<div className="recipe-meta">
+					<div className="serving-size">
+						<div className="recipe-icon">{ recipeIcons.soupSpoon }</div>
+						<div>
+							<RichText
+								placeholder="Serving Size"
+							/>
+						</div>
+					</div>
+					<div className="prep-time">
+						<div className="recipe-icon">{ recipeIcons.apron }</div>
+						<div>
+							<RichText
+								placeholder="Prep Time"
+							/>
+						</div>
+					</div>
+					<div className="cook-time">
+						<div className="recipe-icon">{ recipeIcons.pan }</div>
+						<div>
+							<RichText
+								placeholder="Cook Time"
+							/>
+						</div>
+					</div>
+				</div>
+				<InnerBlocks placeholder="Ingredents" allowedBlocks={ [ 'core/list' ] } />
 			</div>
 		);
 	},
@@ -78,15 +98,15 @@ registerBlockType( 'sapphire-blocks/test-block2', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: ( props ) => {
+	save: (props) => {
 		return (
-			<div className={ props.className }>
+			<div className={props.className}>
 				<p>— Hello from the frontend.</p>
 				<p>
 					CGB BLOCK: <code>sapphire-blocks</code> is a new Gutenberg block.
 				</p>
 				<p>
-					It was created via{ ' ' }
+					It was created via{' '}
 					<code>
 						<a href="https://github.com/ahmadawais/create-guten-block">
 							create-guten-block
@@ -96,4 +116,4 @@ registerBlockType( 'sapphire-blocks/test-block2', {
 			</div>
 		);
 	},
-} );
+});

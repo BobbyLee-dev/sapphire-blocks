@@ -40,7 +40,7 @@ function sapphire_blocks_block_assets() { // phpcs:ignore
 	wp_register_script(
 		'sapphire_blocks-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', ), // Dependencies, defined above.
 		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
 	);
@@ -81,6 +81,7 @@ function sapphire_blocks_block_assets() { // phpcs:ignore
 	$blocks = [
 		'sapphire-blocks/test-block',
 		'sapphire-blocks/test-block2',
+		'sapphire-blocks/recipe',
 	];
 	
 	// Loop through $blocks and register each block with the same script and styles.
