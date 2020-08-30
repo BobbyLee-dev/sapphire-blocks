@@ -14,8 +14,7 @@ import recipeIcons from './recipeIcons';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText, InnerBlocks, BlockList } = wp.editor;
-// console.log(wp.editor);
+const { RichText } = wp.blockEditor;
 
 /**
  * Register: aa Gutenberg Block.
@@ -57,6 +56,16 @@ registerBlockType('sapphire-blocks/recipe', {
 			source: 'html',
 			selector: '.ingredients',
 		},
+		prepSteps: {
+			type: 'string',
+			source: 'html',
+			selector: '.preparation',
+		},
+		currentPostTitle: {
+			type: 'string',
+			source: 'html',
+			selector: '.post-title',
+		},
 	},
 
 	/**
@@ -71,6 +80,16 @@ registerBlockType('sapphire-blocks/recipe', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: (props) => {
+		const postTitle = document.querySelector('.editor-post-title__input');
+		props.setAttributes({ currentPostTitle: `Recipe: ${postTitle.innerHTML}` });
+		const onChangePostTitle = (newPostTitle) => {
+			props.setAttributes({ currentPostTitle: `Recipe: ${newPostTitle}` });
+		};
+		postTitle.addEventListener('change', () => {
+			const postTitleText = document.querySelector('.editor-post-title__input').innerHTML;
+			onChangePostTitle(postTitleText);
+		});
+
 		const onChangeServingSize = (newServingSize) => {
 			props.setAttributes({ servingSize: newServingSize });
 		};
@@ -87,8 +106,13 @@ registerBlockType('sapphire-blocks/recipe', {
 			props.setAttributes({ ingredients: newIngredient });
 		};
 
+		const onChangePreparation = (newPreparation) => {
+			props.setAttributes({ prepSteps: newPreparation });
+		};
+
 		return (
-			<div className={props.className}>
+			<div className="sapphire-recipe">
+				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
 				<div className="recipe-meta">
 					<div className="serving-size-wrap">
 						<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
@@ -113,14 +137,21 @@ registerBlockType('sapphire-blocks/recipe', {
 						</div>
 					</div>
 				</div>
-				{/* <BlockList /> */}
-				{/* <InnerBlocks placeholder="Ingredients" allowedBlocks={ [ 'core/list' ] } /> */}
+				<h3>Ingredients:</h3>
 				<RichText
 					tagName="ul"
 					multiline="li"
 					placeholder={__('Ingredients', 'sapphire-blocks')}
 					onChange={onChangeIngredients}
 					value={props.attributes.ingredients}
+				/>
+				<h3>Preparation:</h3>
+				<RichText
+					tagName="ul"
+					multiline="li"
+					placeholder={__('Preparation Steps', 'sapphire-blocks')}
+					onChange={onChangePreparation}
+					value={props.attributes.prepSteps}
 				/>
 			</div>
 		);
@@ -139,7 +170,8 @@ registerBlockType('sapphire-blocks/recipe', {
 	 */
 	save: (props) => {
 		return (
-			<div className={props.className}>
+			<div className="sapphire-recipe">
+				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
 				<div className="recipe-meta">
 					<div className="serving-size-wrap">
 						<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
@@ -159,11 +191,15 @@ registerBlockType('sapphire-blocks/recipe', {
 							<RichText.Content value={props.attributes.cookTime} />
 						</div>
 					</div>
+					<h3>Ingredients:</h3>
 					<div className="ingredients">
 						<RichText.Content value={props.attributes.ingredients} />
 					</div>
+					<h3>Preparation:</h3>
+					<div className="preparation">
+						<RichText.Content value={props.attributes.prepSteps} />
+					</div>
 				</div>
-				{/* <InnerBlocks placeholder="Ingredients" allowedBlocks={ [ 'core/list' ] } /> */}
 			</div>
 		);
 	},

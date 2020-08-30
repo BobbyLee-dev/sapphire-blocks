@@ -45,13 +45,28 @@
  *
  * CSS for both Frontend+Backend.
  */
-.wp-block-sapphire-blocks-recipe {
-  background: orangered;
-  border: 0.2rem solid #292929;
+.sapphire-recipe {
+  background: #fff;
   color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-  .wp-block-sapphire-blocks-recipe .recipe-meta > div {
+  font-size: 16px;
+  padding: 40px 20px;
+  border: 1px solid #e3c6bc; }
+  .sapphire-recipe h2 {
+    margin-top: 0 !important;
+    font-size: 22px !important; }
+  .sapphire-recipe h3 {
+    font-size: 20px !important; }
+  .sapphire-recipe .recipe-meta > div {
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    margin-bottom: 15px; }
+  .sapphire-recipe .recipe-meta .recipe-icon {
+    width: 20px;
+    margin-right: 10px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+        justify-content: flex-end; }
+    .sapphire-recipe .recipe-meta .recipe-icon svg {
+      max-width: 100%;
+      height: auto; }

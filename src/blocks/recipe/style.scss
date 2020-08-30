@@ -4,16 +4,33 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-sapphire-blocks-recipe  {
-  background: $red;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
-  .recipe-meta {
-    > div {
-      display: flex;
-    }
-  }
+.sapphire-recipe {
+	background: $white;
+	color: $black;
+	font-size: 16px;
+	padding: 40px 20px;
+	border: 1px solid #e3c6bc;
+	h2 {
+		margin-top: 0 !important;
+		font-size: 22px !important;
+	}
+	h3 {
+		font-size: 20px !important;
+	}
+	.recipe-meta {
+		> div {
+			display: flex;
+			margin-bottom: 15px;
+		}
+		.recipe-icon {
+			width: 20px;
+			margin-right: 10px;
+			display: flex;
+			justify-content: flex-end;
+			svg {
+				max-width: 100%;
+				height: auto;
+			}
+		}
+	}
 }

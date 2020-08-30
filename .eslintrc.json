@@ -148,7 +148,7 @@
 		"react/display-name": "off",
 		"react/jsx-curly-spacing": "off",
 		"react/jsx-equals-spacing": "off",
-		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-indent": "off",
 		"react/jsx-indent-props": ["error", "tab"],
 		"react/jsx-key": "error",
 		"react/jsx-tag-spacing": "error",
@@ -172,6 +172,7 @@
 		// "template-curly-spacing": ["error", "always"],
 		"valid-jsdoc": ["error", { "requireReturn": false }],
 		"valid-typeof": "error",
-		"yoda": "off"
+		"yoda": "off",
+		"operator-linebreak": "off"
 	}
 }
