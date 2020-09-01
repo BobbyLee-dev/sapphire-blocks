@@ -56,17 +56,19 @@
     font-size: 22px !important; }
   .sapphire-recipe h3 {
     font-size: 20px !important; }
-  .sapphire-recipe .recipe-meta > div {
+  .sapphire-recipe .recipe-detail-wrap {
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 15px; }
-  .sapphire-recipe .recipe-meta .recipe-icon {
+    .sapphire-recipe .recipe-detail-wrap .recipe-detail {
+      width: 100%; }
+  .sapphire-recipe .recipe-icon {
     width: 20px;
     margin-right: 10px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: end;
         justify-content: flex-end; }
-    .sapphire-recipe .recipe-meta .recipe-icon svg {
+    .sapphire-recipe .recipe-icon svg {
       max-width: 100%;
       height: auto; }

@@ -17,20 +17,21 @@
 	h3 {
 		font-size: 20px !important;
 	}
-	.recipe-meta {
-		> div {
-			display: flex;
-			margin-bottom: 15px;
+	.recipe-detail-wrap {
+		display: flex;
+		margin-bottom: 15px;
+		.recipe-detail {
+			width: 100%;
 		}
-		.recipe-icon {
-			width: 20px;
-			margin-right: 10px;
-			display: flex;
-			justify-content: flex-end;
-			svg {
-				max-width: 100%;
-				height: auto;
-			}
+	}
+	.recipe-icon {
+		width: 20px;
+		margin-right: 10px;
+		display: flex;
+		justify-content: flex-end;
+		svg {
+			max-width: 100%;
+			height: auto;
 		}
 	}
 }

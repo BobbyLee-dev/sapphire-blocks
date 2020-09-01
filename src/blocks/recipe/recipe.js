@@ -66,6 +66,11 @@ registerBlockType('sapphire-blocks/recipe', {
 			source: 'html',
 			selector: '.post-title',
 		},
+		tip: {
+			type: 'string',
+			source: 'html',
+			selector: '.recipe-tip',
+		},
 	},
 
 	/**
@@ -110,33 +115,32 @@ registerBlockType('sapphire-blocks/recipe', {
 			props.setAttributes({ prepSteps: newPreparation });
 		};
 
+		const onChangeTips = (newTip) => {
+			props.setAttributes({ tip: newTip });
+		};
+
 		return (
 			<div className="sapphire-recipe">
 				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
-				<div className="recipe-meta">
-					<div className="serving-size-wrap">
-						<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
-						<div className="serving-size">
-							<RichText
-								placeholder="Serving Size"
-								value={props.attributes.servingSize}
-								onChange={onChangeServingSize}
-							/>
-						</div>
-					</div>
-					<div className="prep-time-wrap">
-						<div className="recipe-icon">{recipeIcons.apron}</div>
-						<div className="prep-time">
-							<RichText placeholder="Prep Time" value={props.attributes.prepTime} onChange={onChangePrepTime} />
-						</div>
-					</div>
-					<div className="cook-time-wrap">
-						<div className="recipe-icon">{recipeIcons.pan}</div>
-						<div className="cook-time-wrap">
-							<RichText placeholder="Cook Time" value={props.attributes.cookTime} onChange={onChangeCookTime} />
-						</div>
+				<div className="serving-size-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
+					<div className="serving-size recipe-detail">
+						<RichText placeholder="Serving Size" value={props.attributes.servingSize} onChange={onChangeServingSize} />
 					</div>
 				</div>
+				<div className="prep-time-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.apron}</div>
+					<div className="prep-time recipe-detail">
+						<RichText placeholder="Prep Time" value={props.attributes.prepTime} onChange={onChangePrepTime} />
+					</div>
+				</div>
+				<div className="cook-time-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.pan}</div>
+					<div className="cook-time recipe-detail">
+						<RichText placeholder="Cook Time" value={props.attributes.cookTime} onChange={onChangeCookTime} />
+					</div>
+				</div>
+
 				<h3>Ingredients:</h3>
 				<RichText
 					tagName="ul"
@@ -153,6 +157,16 @@ registerBlockType('sapphire-blocks/recipe', {
 					onChange={onChangePreparation}
 					value={props.attributes.prepSteps}
 				/>
+				<div className="tip-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.corgi}</div>
+					<div className="recipe-tip recipe-detail">
+						<RichText
+							placeholder={__('Tips', 'sapphire-blocks')}
+							onChange={onChangeTips}
+							value={props.attributes.tips}
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	},
@@ -172,34 +186,40 @@ registerBlockType('sapphire-blocks/recipe', {
 		return (
 			<div className="sapphire-recipe">
 				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
-				<div className="recipe-meta">
-					<div className="serving-size-wrap">
-						<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
-						<div className="serving-size">
-							<RichText.Content value={props.attributes.servingSize} />
-						</div>
-					</div>
-					<div className="prep-time-wrap">
-						<div className="recipe-icon">{recipeIcons.apron}</div>
-						<div className="prep-time">
-							<RichText.Content value={props.attributes.prepTime} />
-						</div>
-					</div>
-					<div className="cook-time-wrap">
-						<div className="recipe-icon">{recipeIcons.pan}</div>
-						<div className="cook-time">
-							<RichText.Content value={props.attributes.cookTime} />
-						</div>
-					</div>
-					<h3>Ingredients:</h3>
-					<div className="ingredients">
-						<RichText.Content value={props.attributes.ingredients} />
-					</div>
-					<h3>Preparation:</h3>
-					<div className="preparation">
-						<RichText.Content value={props.attributes.prepSteps} />
+				<div className="serving-size-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
+					<div className="serving-size recipe-detail">
+						<RichText.Content value={props.attributes.servingSize} />
 					</div>
 				</div>
+				<div className="prep-time-wrap recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.apron}</div>
+					<div className="prep-time recipe-detail">
+						<RichText.Content value={props.attributes.prepTime} />
+					</div>
+				</div>
+				<div className="recipe-detail-wrap">
+					<div className="recipe-icon">{recipeIcons.pan}</div>
+					<div className="cook-time recipe-detail">
+						<RichText.Content value={props.attributes.cookTime} />
+					</div>
+				</div>
+				<h3>Ingredients:</h3>
+				<div className="ingredients">
+					<RichText.Content value={props.attributes.ingredients} />
+				</div>
+				<h3>Preparation:</h3>
+				<div className="preparation">
+					<RichText.Content value={props.attributes.prepSteps} />
+				</div>
+				{props.attributes.tip && (
+					<div className="tip-wrap recipe-detail-wrap">
+						<div className="tip-icon">{recipeIcons.corgi}</div>
+						<div className="recipe-tip recipe-detail">
+							<RichText.Content value={props.attributes.tip} />
+						</div>
+					</div>
+				)}
 			</div>
 		);
 	},
