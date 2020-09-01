@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+include __DIR__ . '/blocks/recipe/recipe.php';
+
 /**
  * Enqueue Gutenberg block assets for both frontend + backend.
  *
@@ -81,7 +83,7 @@ function sapphire_blocks_block_assets() { // phpcs:ignore
 	$blocks = [
 		'sapphire-blocks/test-block',
 		'sapphire-blocks/test-block2',
-		'sapphire-blocks/recipe',
+		// 'sapphire-blocks/recipe',
 	];
 	
 	// Loop through $blocks and register each block with the same script and styles.

@@ -183,44 +183,6 @@ registerBlockType('sapphire-blocks/recipe', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save: (props) => {
-		return (
-			<div className="sapphire-recipe">
-				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
-				<div className="serving-size-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
-					<div className="serving-size recipe-detail">
-						<RichText.Content value={props.attributes.servingSize} />
-					</div>
-				</div>
-				<div className="prep-time-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.apron}</div>
-					<div className="prep-time recipe-detail">
-						<RichText.Content value={props.attributes.prepTime} />
-					</div>
-				</div>
-				<div className="recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.pan}</div>
-					<div className="cook-time recipe-detail">
-						<RichText.Content value={props.attributes.cookTime} />
-					</div>
-				</div>
-				<h3>Ingredients:</h3>
-				<div className="ingredients">
-					<RichText.Content value={props.attributes.ingredients} />
-				</div>
-				<h3>Preparation:</h3>
-				<div className="preparation">
-					<RichText.Content value={props.attributes.prepSteps} />
-				</div>
-				{props.attributes.tip && (
-					<div className="tip-wrap recipe-detail-wrap">
-						<div className="tip-icon">{recipeIcons.corgi}</div>
-						<div className="recipe-tip recipe-detail">
-							<RichText.Content value={props.attributes.tip} />
-						</div>
-					</div>
-				)}
-			</div>
-		);
+		return null;
 	},
 });
