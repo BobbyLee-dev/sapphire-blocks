@@ -32,7 +32,7 @@ const { RichText } = wp.blockEditor;
 registerBlockType('sapphire-blocks/recipe', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __('Sapphire Recipe'), // Block title.
-	icon: recipeIcons.soupSpoon, // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	icon: recipeIcons.blockIcon, // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'sapphire-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [__('Sapphire Blocks'), __('Recipe'), __('Cooking'), __('Food')],
 	attributes: {
@@ -123,19 +123,19 @@ registerBlockType('sapphire-blocks/recipe', {
 			<div className="sapphire-recipe">
 				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
 				<div className="serving-size-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
+					<div className="recipe-icon">{recipeIcons.servingSize}</div>
 					<div className="serving-size recipe-detail">
 						<RichText placeholder="Serving Size" value={props.attributes.servingSize} onChange={onChangeServingSize} />
 					</div>
 				</div>
 				<div className="prep-time-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.apron}</div>
+					<div className="recipe-icon">{recipeIcons.prepTime}</div>
 					<div className="prep-time recipe-detail">
 						<RichText placeholder="Prep Time" value={props.attributes.prepTime} onChange={onChangePrepTime} />
 					</div>
 				</div>
 				<div className="cook-time-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.pan}</div>
+					<div className="recipe-icon">{recipeIcons.cookTime}</div>
 					<div className="cook-time recipe-detail">
 						<RichText placeholder="Cook Time" value={props.attributes.cookTime} onChange={onChangeCookTime} />
 					</div>
@@ -187,19 +187,19 @@ registerBlockType('sapphire-blocks/recipe', {
 			<div className="sapphire-recipe">
 				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
 				<div className="serving-size-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.soupSpoon}</div>
+					<div className="recipe-icon">{recipeIcons.servingSize}</div>
 					<div className="serving-size recipe-detail">
 						<RichText.Content value={props.attributes.servingSize} />
 					</div>
 				</div>
 				<div className="prep-time-wrap recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.apron}</div>
+					<div className="recipe-icon">{recipeIcons.prepTime}</div>
 					<div className="prep-time recipe-detail">
 						<RichText.Content value={props.attributes.prepTime} />
 					</div>
 				</div>
 				<div className="recipe-detail-wrap">
-					<div className="recipe-icon">{recipeIcons.pan}</div>
+					<div className="recipe-icon">{recipeIcons.cookTime}</div>
 					<div className="cook-time recipe-detail">
 						<RichText.Content value={props.attributes.cookTime} />
 					</div>
