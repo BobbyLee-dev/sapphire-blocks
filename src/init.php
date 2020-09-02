@@ -12,7 +12,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 include __DIR__ . '/blocks/recipe/recipe.php';
 
 /**
@@ -55,14 +54,14 @@ function sapphire_blocks_block_assets() { // phpcs:ignore
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
 
-	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
+	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `sapphireBlocksGlobal` object.
 	wp_localize_script(
 		'sapphire_blocks-block-js',
-		'cgbGlobal', // Array containing dynamic data for a JS Global.
+		'sapphireBlocksGlobal', // Array containing dynamic data for a JS Global.
 		[
 			'pluginDirPath' => plugin_dir_path( __DIR__ ),
 			'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-			// Add more data here that you want to access from `cgbGlobal` object.
+			// Add more data here that you want to access from `sapphireBlocksGlobal` object.
 		]
 	);
 
@@ -94,6 +93,20 @@ function sapphire_blocks_block_assets() { // phpcs:ignore
 			'editor_style'  => 'sapphire_blocks-block-editor-css',  // Calls registered stylesheet above
 		) );	  
 	}
+
+	// Dynamic setup start+++++++++++++++++
+	
+	// Include dynamic block php callback
+	// include __DIR__ . '/blocks/recipe/recipe.php';
+
+	// // Register dynamic block.
+	// register_block_type( 'sapphire-blocks/recipe', array(
+	// 	'style'         	=> 'sapphire_blocks-style-css',					// Calls registered script above
+	// 	'editor_script' 	=> 'sapphire_blocks-block-js',					// Calls registered stylesheet above
+	// 	'editor_style'  	=> 'sapphire_blocks-block-editor-css',  // Calls registered stylesheet above
+	// 	'render_callback' => 'render_sapphire_recipe'
+	// ) );
+	// // Dynamic setup End +++++++++++++++++
 
 
 

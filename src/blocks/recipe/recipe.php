@@ -4,9 +4,9 @@
  * Server rendering for /blocks/examples/12-dynamic
  */
 function render_sapphire_recipe($attributes, $content) {
- print_r($content);
- echo 'hi';
-
+	var_dump($attributes);
+	echo 'dynamic stuff, but what is dynamic? the headings and Icons? - How to get user content 
+	added by user?';
 
 }
 
@@ -19,7 +19,6 @@ function register_sapphire_recipe() {
   
   // Register dynamic block.
 	register_block_type( 'sapphire-blocks/recipe', array(
-	
 		'render_callback' => 'render_sapphire_recipe'
 	) );
 
