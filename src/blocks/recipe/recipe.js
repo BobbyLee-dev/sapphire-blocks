@@ -14,7 +14,8 @@ import recipeIcons from './recipeIcons';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText } = wp.blockEditor;
+const { MediaUpload, RichText } = wp.blockEditor;
+const { Button, IconButton } = wp.components;
 
 /**
  * Register: aa Gutenberg Block.
@@ -40,6 +41,12 @@ registerBlockType('sapphire-blocks/recipe', {
 			type: 'string',
 			source: 'html',
 			selector: '.serving-size',
+		},
+		servingSizeSvg: {
+			type: 'string',
+			source: 'html',
+			selector: '.serving-size-wrap .recipe-icon',
+			default: recipeIcons.blockIcon,
 		},
 		prepTime: {
 			type: 'string',
@@ -119,11 +126,32 @@ registerBlockType('sapphire-blocks/recipe', {
 			props.setAttributes({ tip: newTip });
 		};
 
+		const onImageSelect = (imageObject) => {
+			console.log(imageObject);
+			console.log('hi');
+
+			// props.setAttributes({ servingSizeSvg: imageObject });
+		};
+
 		return (
 			<div className="sapphire-recipe">
 				<h2 className="post-title">{props.attributes.currentPostTitle}</h2>
 				<div className="serving-size-wrap recipe-detail-wrap">
 					<div className="recipe-icon">{recipeIcons.servingSize}</div>
+					<MediaUpload
+						onSelect={onImageSelect}
+						type="svg"
+						value={recipeIcons.servingSize}
+						render={({ open }) => (
+							<IconButton
+								className="podkit-logo__button"
+								onClick={open}
+								icon="format-image"
+								showTooltip="true"
+								label={__('Change image.', 'podkit')}
+							/>
+						)}
+					/>
 					<div className="serving-size recipe-detail">
 						<RichText placeholder="Serving Size" value={props.attributes.servingSize} onChange={onChangeServingSize} />
 					</div>
